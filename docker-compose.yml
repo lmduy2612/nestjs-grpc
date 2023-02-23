@@ -1,0 +1,54 @@
+version: '3.7'
+services:
+  gateways:
+    build: ./gateways/public
+    restart: always
+    hostname: public-gateways
+    env_file:
+      - .env.docker
+    ports:
+      - '3000:3000'
+    networks:
+      - default
+    volumes:
+      - .:/var/www
+    command: yarn start:dev
+
+  auth-microservice:
+    build: ./microservices/auth
+    restart: always
+    hostname: auth-microservice
+    env_file:
+      - .env.docker
+    networks:
+      - default
+    ports:
+      - '50051:50051'  
+    depends_on:
+      - mysql_db  
+    volumes:
+      - ./:/var/www
+    command: yarn start:dev
+
+  mysql_db:
+    image: mysql:5.5
+    container_name: mysql_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password 
+      MYSQL_DATABASE: nestjs
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password  
+    networks:
+      - default  
+
+networks:
+  default:
+    driver: bridge
+
+volumes:
+  db_data:    
+  
