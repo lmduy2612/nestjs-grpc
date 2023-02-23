@@ -1,6 +1,6 @@
 version: '3.7'
 services:
-  gateways:
+  public_gateways:
     build: ./gateways/public
     restart: always
     hostname: public-gateways
@@ -11,10 +11,10 @@ services:
     networks:
       - default
     volumes:
-      - .:/var/www
+      - ./gateways/public:/var/www
     command: yarn start:dev
 
-  auth-microservice:
+  auth_microservice:
     build: ./microservices/auth
     restart: always
     hostname: auth-microservice
@@ -27,7 +27,7 @@ services:
     depends_on:
       - mysql_db  
     volumes:
-      - ./:/var/www
+      - ./microservices/auth:/var/www
     command: yarn start:dev
 
   mysql_db:
