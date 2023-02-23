@@ -1,3 +1,4 @@
+import { ConfigService } from '@nestjs/config';
 import { Module, Global } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { AuthController } from './auth.controller';
@@ -7,15 +8,20 @@ import { AuthService } from './auth.service';
 @Global()
 @Module({
   imports: [
-    ClientsModule.register([
+    ClientsModule.registerAsync([
       {
         name: AUTH_SERVICE_NAME,
-        transport: Transport.GRPC,
-        options: {
-          url: 'auth_microservice:50051',
-          package: AUTH_PACKAGE_NAME,
-          protoPath: 'node_modules/grpc-nest-proto/proto/auth.proto',
+        useFactory: (configService: ConfigService) => {
+          return {
+            transport: Transport.GRPC,
+            options: {
+              url: configService.get<string>('GRPC_MICRO_AUTH_URL'),
+              package: AUTH_PACKAGE_NAME,
+              protoPath: configService.get<string>('GRPC_MICRO_AUTH_NODE'),
+            },
+          };
         },
+        inject: [ConfigService],
       },
     ]),
   ],
