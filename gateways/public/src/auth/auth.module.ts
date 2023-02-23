@@ -12,7 +12,7 @@ import { AuthService } from './auth.service';
         name: AUTH_SERVICE_NAME,
         transport: Transport.GRPC,
         options: {
-          url: '0.0.0.0:50051',
+          url: 'auth_microservice:50051',
           package: AUTH_PACKAGE_NAME,
           protoPath: 'node_modules/grpc-nest-proto/proto/auth.proto',
         },

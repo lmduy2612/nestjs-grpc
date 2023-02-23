@@ -12,7 +12,7 @@ async function bootstrap() {
     {
       transport: Transport.GRPC,
       options: {
-        url: '0.0.0.0:50051',
+        url: 'auth_microservice:50051',
         package: protobufPackage,
         protoPath: join('node_modules/grpc-nest-proto/proto/auth.proto'),
       },

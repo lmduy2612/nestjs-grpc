@@ -8,8 +8,8 @@ import { AuthModule } from './auth/auth.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      // host: 'mysql_db', // for docker
-      host: 'localhost', // for docker
+      host: 'mysql_db', // for docker
+      // host: 'localhost', // for localhost
       port: 3306,
       database: 'nestjs',
       username: 'user',

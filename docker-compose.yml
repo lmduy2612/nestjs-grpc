@@ -3,7 +3,6 @@ services:
   public_gateways:
     build: ./gateways/public
     restart: always
-    hostname: public-gateways
     env_file:
       - .env.docker
     ports:
@@ -17,13 +16,10 @@ services:
   auth_microservice:
     build: ./microservices/auth
     restart: always
-    hostname: auth-microservice
     env_file:
       - .env.docker
     networks:
-      - default
-    ports:
-      - '50051:50051'  
+      - default 
     depends_on:
       - mysql_db  
     volumes:
