@@ -2,8 +2,8 @@ import { ConfigService } from '@nestjs/config';
 import { Module, Global } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { AuthController } from './auth.controller';
-import { AUTH_PACKAGE_NAME, AUTH_SERVICE_NAME } from './auth.pb';
 import { AuthService } from './auth.service';
+import { AUTH_SERVICE_NAME } from './auth.interface';
 
 @Global()
 @Module({
@@ -13,11 +13,13 @@ import { AuthService } from './auth.service';
         name: AUTH_SERVICE_NAME,
         useFactory: (configService: ConfigService) => {
           return {
-            transport: Transport.GRPC,
+            transport: Transport.RMQ,
             options: {
-              url: configService.get<string>('MICRO_AUTH_GRPC_URL'),
-              package: AUTH_PACKAGE_NAME,
-              protoPath: configService.get<string>('MICRO_AUTH_GRPC_NODE'),
+              urls: [configService.get<string>('MICRO_AUTH_RABBITMQ_URL')],
+              queue: configService.get<string>('MICRO_AUTH_RABBITMQ_QUEUE'),
+              queueOptions: {
+                durable: true,
+              },
             },
           };
         },

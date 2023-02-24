@@ -2,19 +2,19 @@ import { Transport } from '@nestjs/microservices';
 import { INestMicroservice, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { protobufPackage } from './auth/auth.pb';
-import { join } from 'path';
 import { HttpExceptionFilter } from './auth/filter/http-exception.filter';
 
 async function bootstrap() {
   const app: INestMicroservice = await NestFactory.createMicroservice(
     AppModule,
     {
-      transport: Transport.GRPC,
+      transport: Transport.RMQ,
       options: {
-        url: process.env.MICRO_AUTH_GRPC_URL,
-        package: protobufPackage,
-        protoPath: join(process.env.MICRO_AUTH_GRPC_NODE),
+        urls: ['amqp://myuser:mypassword@localhost:5672'],
+        queue: 'auth_queue',
+        queueOptions: {
+          durable: true,
+        },
       },
     },
   );

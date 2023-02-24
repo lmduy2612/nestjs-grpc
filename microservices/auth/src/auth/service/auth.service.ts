@@ -8,7 +8,7 @@ import {
   ValidateRequestDto,
 } from '../auth.dto';
 import { Auth } from '../auth.entity';
-import { LoginResponse, RegisterResponse, ValidateResponse } from '../auth.pb';
+import { LoginResponse, RegisterResponse, ValidateResponse } from '../auth.interface';
 
 @Injectable()
 export class AuthService {

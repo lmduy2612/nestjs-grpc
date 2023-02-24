@@ -1,5 +1,5 @@
 import { Controller, Inject } from '@nestjs/common';
-import { GrpcMethod } from '@nestjs/microservices';
+import { GrpcMethod, MessagePattern } from '@nestjs/microservices';
 import {
   LoginRequestDto,
   RegisterRequestDto,
@@ -10,7 +10,7 @@ import {
   RegisterResponse,
   LoginResponse,
   ValidateResponse,
-} from './auth.pb';
+} from './auth.interface';
 import { AuthService } from './service/auth.service';
 
 @Controller('auth')
@@ -18,12 +18,12 @@ export class AuthController {
   @Inject(AuthService)
   private readonly service: AuthService;
 
-  @GrpcMethod(AUTH_SERVICE_NAME, 'Register')
+  @MessagePattern('AuthMicroservice_register')
   private register(payload: RegisterRequestDto): Promise<RegisterResponse> {
     return this.service.register(payload);
   }
 
-  @GrpcMethod(AUTH_SERVICE_NAME, 'Login')
+  @MessagePattern('AuthMicroservice_login')
   private login(payload: LoginRequestDto): Promise<LoginResponse> {
     return this.service.login(payload);
   }
