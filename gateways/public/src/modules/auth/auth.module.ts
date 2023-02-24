@@ -15,9 +15,9 @@ import { AuthService } from './auth.service';
           return {
             transport: Transport.GRPC,
             options: {
-              url: configService.get<string>('GRPC_MICRO_AUTH_URL'),
+              url: configService.get<string>('MICRO_AUTH_GRPC_URL'),
               package: AUTH_PACKAGE_NAME,
-              protoPath: configService.get<string>('GRPC_MICRO_AUTH_NODE'),
+              protoPath: configService.get<string>('MICRO_AUTH_GRPC_NODE'),
             },
           };
         },

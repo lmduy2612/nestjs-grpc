@@ -12,9 +12,9 @@ async function bootstrap() {
     {
       transport: Transport.GRPC,
       options: {
-        url: process.env.GRPC_MICRO_AUTH_URL,
+        url: process.env.MICRO_AUTH_GRPC_URL,
         package: protobufPackage,
-        protoPath: join(process.env.GRPC_MICRO_AUTH_NODE),
+        protoPath: join(process.env.MICRO_AUTH_GRPC_NODE),
       },
     },
   );
