@@ -19,7 +19,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "proto:auth": "protoc --plugin=node_modules/.bin/protoc-gen-ts_proto -I=./node_modules/grpc-nest-proto/proto --ts_proto_out=src/auth/ --ts_proto_opt=nestJs=true --ts_proto_opt=fileSuffix=.pb"
+    "proto:install": "npm i git+https://github.com/hellokvn/grpc-nest-proto.git",
+    "proto:auth": "protoc --plugin=node_modules/.bin/protoc-gen-ts_proto -I=./node_modules/grpc-nest-proto/proto --ts_proto_out=src/auth/ node_modules/grpc-nest-proto/proto/auth.proto --ts_proto_opt=nestJs=true --ts_proto_opt=fileSuffix=.pb"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.8.8",
@@ -32,6 +33,7 @@
     "@nestjs/swagger": "^6.2.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
+    "grpc-nest-proto": "github:hellokvn/grpc-nest-proto",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"
