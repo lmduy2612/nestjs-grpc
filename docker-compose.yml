@@ -21,14 +21,14 @@ services:
     networks:
       - default 
     depends_on:
-      - mysql_db  
+      - db_mysql  
     volumes:
       - ./microservices/auth:/var/www
     command: yarn start:dev
 
-  mysql_db:
+  db_mysql:
     image: mysql:5.5
-    container_name: mysql_db
+    container_name: db_mysql
     ports:
       - "3306:3306"
     volumes:
