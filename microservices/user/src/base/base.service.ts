@@ -24,6 +24,7 @@ export class BaseService<T extends BaseEntity, R extends Repository<T>>
   }
 
   create(data: any): Promise<T> {
+    console.log(this.repository, 'this.repository')
     return this.repository.save(data);
   }
 

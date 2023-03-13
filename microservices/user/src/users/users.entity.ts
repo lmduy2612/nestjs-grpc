@@ -36,7 +36,7 @@ export class User extends BaseEntity {
   @Column({ type: 'int', name: 'city_id' })
   public cityId!: number;
 
-  @Column({ type: 'int' })
+  @Column({ type: 'int', default: 1 })
   public status!: number;
 
   @CreateDateColumn({ name: 'created_at' })

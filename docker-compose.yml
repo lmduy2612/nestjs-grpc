@@ -13,6 +13,19 @@ services:
       - ./gateways/public:/var/www
     command: yarn start:dev
 
+  admin_gateways:
+    build: ./gateways/admin
+    restart: always
+    env_file:
+      - .env.docker
+    ports:
+      - '3001:3000'
+    networks:
+      - default
+    volumes:
+      - ./gateways/admin:/var/www
+    command: yarn start:dev 
+
   auth_microservice:
     build: ./microservices/auth
     restart: always

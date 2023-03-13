@@ -1,16 +1,11 @@
 /* eslint-disable */
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { Observable } from "rxjs";
-import { IsEmail, IsString, Length } from 'class-validator';
 
 export const protobufPackage = "auth";
 
-export class RegisterRequest {
-  @IsEmail()
+export interface RegisterRequest {
   email: string;
-
-  @IsString()
-  @Length(6, 20)
   password: string;
 }
 
@@ -19,7 +14,7 @@ export interface RegisterResponse {
   error: string[];
 }
 
-export class LoginRequest {
+export interface LoginRequest {
   email: string;
   password: string;
 }

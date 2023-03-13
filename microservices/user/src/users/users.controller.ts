@@ -8,7 +8,7 @@ export class UsersController {
   @Inject(UsersService)
   private readonly service: UsersService;
 
-  @GrpcMethod(USER_SERVICE_NAME, 'CreateUser')
+  @GrpcMethod(USER_SERVICE_NAME, 'createUser')
   private create(payload: CreateUserRequest): Promise<User> {
     return this.service.create(payload);
   }
