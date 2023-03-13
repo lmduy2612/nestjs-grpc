@@ -2719,10 +2719,6 @@ grapheme-splitter@^1.0.4:
   resolved "https://registry.yarnpkg.com/grapheme-splitter/-/grapheme-splitter-1.0.4.tgz#9cf3a665c6247479896834af35cf1dbb4400767e"
   integrity sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==
 
-"grpc-nest-proto@github:hellokvn/grpc-nest-proto":
-  version "1.0.0"
-  resolved "https://codeload.github.com/hellokvn/grpc-nest-proto/tar.gz/e77501459b0128df96c1ba1b13d43721537488a8"
-
 has-flag@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-3.0.0.tgz#b5d454dc2199ae225699f3467e5a07f3b955bafd"
@@ -3714,7 +3710,7 @@ neo-async@^2.6.2:
 
 "nestjs-grpc-proto@github:lmduy2612/nestjs-grpc-proto":
   version "1.0.0"
-  resolved "https://codeload.github.com/lmduy2612/nestjs-grpc-proto/tar.gz/91d8324d9e24708670e0c47a49afc78c0c3d023a"
+  resolved "https://codeload.github.com/lmduy2612/nestjs-grpc-proto/tar.gz/281f6d6f603a432465a67f807d70bf1cf7a08276"
 
 node-abort-controller@^3.0.1:
   version "3.1.1"

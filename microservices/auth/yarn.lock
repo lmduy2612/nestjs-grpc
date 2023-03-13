@@ -3928,7 +3928,7 @@ neo-async@^2.6.2:
 
 "nestjs-grpc-proto@github:lmduy2612/nestjs-grpc-proto":
   version "1.0.0"
-  resolved "https://codeload.github.com/lmduy2612/nestjs-grpc-proto/tar.gz/91d8324d9e24708670e0c47a49afc78c0c3d023a"
+  resolved "https://codeload.github.com/lmduy2612/nestjs-grpc-proto/tar.gz/281f6d6f603a432465a67f807d70bf1cf7a08276"
 
 node-abort-controller@^3.0.1:
   version "3.1.1"
