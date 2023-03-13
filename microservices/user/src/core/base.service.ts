@@ -11,7 +11,7 @@ export class BaseService<T extends BaseEntity, R extends Repository<T>>
     this.repository = repository;
   }
 
-  index(): Promise<T[]> {
+  find(): Promise<T[]> {
     return this.repository.find();
   }
 
@@ -24,7 +24,6 @@ export class BaseService<T extends BaseEntity, R extends Repository<T>>
   }
 
   create(data: any): Promise<T> {
-    console.log(this.repository, 'this.repository')
     return this.repository.save(data);
   }
 

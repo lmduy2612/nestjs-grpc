@@ -8,11 +8,11 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class User extends BaseEntity {
+export class Users extends BaseEntity {
   @PrimaryGeneratedColumn()
   public id!: number;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', unique: true })
   public email!: string;
 
   @Column({ type: 'varchar', name: 'first_name' })

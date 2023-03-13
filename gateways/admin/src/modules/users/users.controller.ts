@@ -1,12 +1,16 @@
-import { Body, Controller, Inject, Post } from '@nestjs/common';
+import { Observable } from 'rxjs';
+
+import { Body, Query, Controller, Get, Inject, Post } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { Observable } from 'rxjs';
+
 import {
-  User,
   CreateUserRequest,
-  UserServiceClient,
+  ListUser,
+  ListUserRequest,
+  User,
   USER_SERVICE_NAME,
+  UserServiceClient,
 } from './users.pb';
 
 @Controller('users')
@@ -19,6 +23,14 @@ export class UsersController {
 
   public onModuleInit(): void {
     this.svc = this.client.getService<UserServiceClient>(USER_SERVICE_NAME);
+  }
+
+  @Get('')
+  @ApiOperation({ summary: 'List user' })
+  private async list(
+    @Query() query: ListUserRequest,
+  ): Promise<Observable<ListUser>> {
+    return this.svc.listUser(query);
   }
 
   @Post('create')

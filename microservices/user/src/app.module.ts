@@ -4,7 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { User } from './users/users.entity';
+import { Users } from './users/users.entity';
 import { UsersModule } from './users/users.module';
 
 @Module({
@@ -24,7 +24,7 @@ import { UsersModule } from './users/users.module';
           database: configService.get<string>('MYSQL_DATABASE'),
           username: configService.get<string>('MYSQL_USERNAME'),
           password: configService.get<string>('MYSQL_PASSWORD'),
-          entities: [User],
+          entities: [Users],
           synchronize: true, // never true in production!
         };
       },
