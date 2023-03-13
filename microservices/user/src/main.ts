@@ -2,7 +2,7 @@ import { Transport } from '@nestjs/microservices';
 import { INestMicroservice, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { protobufPackage } from './auth/auth.pb';
+import { protobufPackage } from './users/users.pb';
 import { join } from 'path';
 
 async function bootstrap() {
@@ -11,9 +11,9 @@ async function bootstrap() {
     {
       transport: Transport.GRPC,
       options: {
-        url: process.env.MICRO_AUTH_GRPC_URL,
+        url: process.env.MICRO_USER_GRPC_URL,
         package: protobufPackage,
-        protoPath: join(process.env.MICRO_AUTH_GRPC_NODE),
+        protoPath: join(process.env.MICRO_USER_GRPC_NODE),
       },
     },
   );

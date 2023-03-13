@@ -31,7 +31,9 @@ export class AuthService {
     auth = new Auth();
 
     auth.email = email;
+    auth.displayName = email.split('@')[0];
     auth.password = this.jwtService.encodePassword(password);
+    auth.status = 1;
 
     await this.repository.save(auth);
 

@@ -1,4 +1,3 @@
-import { Exclude } from 'class-transformer';
 import {
   BaseEntity,
   Column,
@@ -9,19 +8,33 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class Auth extends BaseEntity {
+export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   public id!: number;
 
   @Column({ type: 'varchar' })
   public email!: string;
 
-  @Column({ type: 'varchar', name: 'display_name' })
-  public displayName!: string;
+  @Column({ type: 'varchar', name: 'first_name' })
+  public firstName!: string;
 
-  @Exclude()
+  @Column({ type: 'varchar', name: 'last_name' })
+  public lastName!: string;
+
   @Column({ type: 'varchar' })
-  public password!: string;
+  public address!: string;
+
+  @Column({ type: 'varchar' })
+  public avatar!: string;
+
+  @Column({ type: 'int' })
+  public gender!: number;
+
+  @Column({ type: 'int' })
+  public role!: number;
+
+  @Column({ type: 'int', name: 'city_id' })
+  public cityId!: number;
 
   @Column({ type: 'int' })
   public status!: number;

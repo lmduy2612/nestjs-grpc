@@ -19,8 +19,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "proto:install": "npm i git+https://github.com/hellokvn/grpc-nest-proto.git",
-    "proto:auth": "protoc --plugin=node_modules/.bin/protoc-gen-ts_proto -I=./node_modules/grpc-nest-proto/proto --ts_proto_out=src/auth/ node_modules/grpc-nest-proto/proto/auth.proto --ts_proto_opt=nestJs=true --ts_proto_opt=fileSuffix=.pb"
+    "proto:install": "npm i git+https://github.com/lmduy2612/nestjs-grpc-proto.git",
+    "proto:auth": "protoc --plugin=node_modules/.bin/protoc-gen-ts_proto -I=./node_modules/nestjs-grpc-proto/proto --ts_proto_out=src/auth/ node_modules/nestjs-grpc-proto/proto/auth.proto --ts_proto_opt=nestJs=true --ts_proto_opt=fileSuffix=.pb"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.8.8",
@@ -35,7 +35,7 @@
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
-    "grpc-nest-proto": "git+https://github.com/hellokvn/grpc-nest-proto.git",
+    "nestjs-grpc-proto": "github:lmduy2612/nestjs-grpc-proto",
     "mysql2": "^3.1.2",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
