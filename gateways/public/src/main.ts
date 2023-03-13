@@ -1,4 +1,4 @@
-import { SwaggerCustomOptions } from './../node_modules/@nestjs/swagger/dist/interfaces/swagger-custom-options.interface.d';
+import { SwaggerCustomOptions } from '@nestjs/swagger/dist/interfaces/swagger-custom-options.interface';
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory, HttpAdapterHost } from '@nestjs/core';
 import { DocumentBuilder } from '@nestjs/swagger';
