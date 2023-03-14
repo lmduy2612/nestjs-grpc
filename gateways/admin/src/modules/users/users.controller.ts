@@ -1,6 +1,14 @@
-import { Observable } from 'rxjs';
+import { Observable, firstValueFrom } from 'rxjs';
 
-import { Body, Query, Controller, Get, Inject, Post } from '@nestjs/common';
+import {
+  Body,
+  Query,
+  Controller,
+  Get,
+  Inject,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
@@ -12,7 +20,9 @@ import {
   USER_SERVICE_NAME,
   UserServiceClient,
 } from './users.pb';
+import { AuthGuard } from '../auth/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('users')
 @ApiTags('User')
 export class UsersController {

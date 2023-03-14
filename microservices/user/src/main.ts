@@ -2,7 +2,7 @@ import { Transport } from '@nestjs/microservices';
 import { INestMicroservice, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { protobufPackage } from './users/users.pb';
+import { protobufPackage } from './modules/users/users.pb';
 import { join } from 'path';
 
 async function bootstrap() {

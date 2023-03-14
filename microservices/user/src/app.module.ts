@@ -4,8 +4,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { Users } from './users/users.entity';
-import { UsersModule } from './users/users.module';
+import { Users } from './modules/users/users.entity';
+import { UsersModule } from './modules/users/users.module';
 
 @Module({
   imports: [
@@ -18,12 +18,11 @@ import { UsersModule } from './users/users.module';
       useFactory: (configService: ConfigService) => {
         return {
           type: 'mysql',
-          // host: 'mysql_db', // for docker
-          host: configService.get<string>('MYSQL_HOST'), // for localhost
-          port: configService.get<number>('MYSQL_PORT'),
-          database: configService.get<string>('MYSQL_DATABASE'),
-          username: configService.get<string>('MYSQL_USERNAME'),
-          password: configService.get<string>('MYSQL_PASSWORD'),
+          host: configService.get<string>('MYSQL_HOST_USER'),
+          port: configService.get<number>('MYSQL_PORT_USER'),
+          database: configService.get<string>('MYSQL_DATABASE_USER'),
+          username: configService.get<string>('MYSQL_USERNAME_USER'),
+          password: configService.get<string>('MYSQL_PASSWORD_USER'),
           entities: [Users],
           synchronize: true, // never true in production!
         };

@@ -1,6 +1,6 @@
-import { Body, Controller, Inject, Post, Put } from '@nestjs/common';
+import { Body, Controller, Inject, Post } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
-import { ApiBody, ApiOperation, ApiProperty, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Observable } from 'rxjs';
 import {
   AuthServiceClient,
@@ -31,7 +31,7 @@ export class AuthController {
     return this.svc.register(body);
   }
 
-  @Put('login')
+  @Post('login')
   @ApiOperation({ summary: 'Login user' })
   private async login(
     @Body() body: LoginRequest,

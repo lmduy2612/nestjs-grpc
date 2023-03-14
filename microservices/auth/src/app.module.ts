@@ -1,10 +1,12 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { Auth } from './auth/auth.entity';
-import { AuthModule } from './auth/auth.module';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { Auth } from './modules/auth/auth.entity';
+import { AuthModule } from './modules/auth/auth.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -16,12 +18,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       useFactory: (configService: ConfigService) => {
         return {
           type: 'mysql',
-          // host: 'mysql_db', // for docker
-          host: configService.get<string>('MYSQL_HOST'), // for localhost
-          port: configService.get<number>('MYSQL_PORT'),
-          database: configService.get<string>('MYSQL_DATABASE'),
-          username: configService.get<string>('MYSQL_USERNAME'),
-          password: configService.get<string>('MYSQL_PASSWORD'),
+          host: configService.get<string>('MYSQL_HOST_AUTH'),
+          port: configService.get<number>('MYSQL_PORT_AUTH'),
+          database: configService.get<string>('MYSQL_DATABASE_AUTH'),
+          username: configService.get<string>('MYSQL_USERNAME_AUTH'),
+          password: configService.get<string>('MYSQL_PASSWORD_AUTH'),
           entities: [Auth],
           synchronize: true, // never true in production!
         };

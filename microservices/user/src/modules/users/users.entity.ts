@@ -12,7 +12,7 @@ export class Users extends BaseEntity {
   @PrimaryGeneratedColumn()
   public id!: number;
 
-  @Column({ type: 'varchar', unique: true })
+  @Column({ type: 'varchar', unique: true, length: 50 })
   public email!: string;
 
   @Column({ type: 'varchar', name: 'first_name' })
