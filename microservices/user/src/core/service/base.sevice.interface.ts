@@ -2,7 +2,14 @@ import { EntityId } from 'typeorm/repository/EntityId';
 import { DeleteResult } from 'typeorm';
 
 export interface IBaseService<T> {
-  find(): Promise<T[]>;
+  findPaginate(
+    condition: any,
+    perPage: number | null,
+    page: number | null,
+    sort: any,
+  );
+
+  findAll(): Promise<T[]>;
 
   findById(id: EntityId): Promise<T>;
 

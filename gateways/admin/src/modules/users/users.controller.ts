@@ -1,26 +1,33 @@
-import { Observable, firstValueFrom } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import {
   Body,
-  Query,
   Controller,
+  Delete,
   Get,
   Inject,
+  Param,
   Post,
+  Put,
+  Query,
   UseGuards,
 } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
+import { AuthGuard } from '../auth/auth.guard';
 import {
   CreateUserRequest,
+  DeleteUserRequest,
+  GetUserRequest,
   ListUser,
   ListUserRequest,
+  UpdateUserRequest,
   User,
   USER_SERVICE_NAME,
   UserServiceClient,
+  Empty,
 } from './users.pb';
-import { AuthGuard } from '../auth/auth.guard';
 
 @UseGuards(AuthGuard)
 @Controller('users')
@@ -43,11 +50,36 @@ export class UsersController {
     return this.svc.listUser(query);
   }
 
-  @Post('create')
+  @Get(':id')
+  @ApiOperation({ summary: 'Detail user' })
+  private async detail(
+    @Param('id') id: GetUserRequest,
+  ): Promise<Observable<User>> {
+    return this.svc.getUser({ id: Number(id) });
+  }
+
+  @Post('')
   @ApiOperation({ summary: 'Create user' })
   private async create(
     @Body() body: CreateUserRequest,
   ): Promise<Observable<User>> {
     return this.svc.createUser(body);
+  }
+
+  @Put(':id')
+  @ApiOperation({ summary: 'Update user' })
+  private async update(
+    @Param('id') id: number,
+    @Body() body: UpdateUserRequest,
+  ): Promise<Observable<User>> {
+    return this.svc.updateUser({ ...body, id });
+  }
+
+  @Delete(':id')
+  @ApiOperation({ summary: 'Delete user' })
+  private async delete(
+    @Param('id') id: DeleteUserRequest,
+  ): Promise<Observable<Empty>> {
+    return this.svc.deleteUser({ id: Number(id) });
   }
 }

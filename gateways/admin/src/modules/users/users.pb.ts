@@ -1,9 +1,19 @@
 /* eslint-disable */
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
 import { Observable } from "rxjs";
-import { Empty } from "./google/protobuf/empty.pb";
 
 export const protobufPackage = "user";
+
+export interface Empty {
+}
+
+export interface MetaPagination {
+  total: number;
+  itemCount: number;
+  pageCount: number;
+  hasPreviousPage: boolean;
+  hasNextPage: boolean;
+}
 
 export interface User {
   email: string;
@@ -17,18 +27,19 @@ export interface User {
 }
 
 export interface ListUser {
-  data: User[];
+  results: User[];
+  meta: MetaPagination | undefined;
 }
 
 export interface ListUserRequest {
+  filters: string;
+  perPage: number;
+  page: number;
+  sort: string;
 }
 
 export interface GetUserRequest {
-  id: string;
-}
-
-export interface DeleteUserRequest {
-  id: string;
+  id: number;
 }
 
 export interface CreateUserRequest {
@@ -54,6 +65,10 @@ export interface UpdateUserRequest {
   cityId: number;
 }
 
+export interface DeleteUserRequest {
+  id: number;
+}
+
 export const USER_PACKAGE_NAME = "user";
 
 export interface UserServiceClient {
@@ -77,7 +92,7 @@ export interface UserServiceController {
 
   updateUser(request: UpdateUserRequest): Promise<User> | Observable<User> | User;
 
-  deleteUser(request: DeleteUserRequest): void;
+  deleteUser(request: DeleteUserRequest): Promise<Empty> | Observable<Empty> | Empty;
 }
 
 export function UserServiceControllerMethods() {
