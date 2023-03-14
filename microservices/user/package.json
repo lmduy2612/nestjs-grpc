@@ -19,7 +19,7 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "proto:user": "protoc --plugin=node_modules/.bin/protoc-gen-ts_proto -I=./node_modules/nestjs-grpc-proto/proto --ts_proto_out=src/modules/users/ node_modules/nestjs-grpc-proto/proto/users.proto --ts_proto_opt=nestJs=true --ts_proto_opt=fileSuffix=.pb"
+    "proto:user": "protoc --plugin=node_modules/.bin/protoc-gen-ts_proto -I=./node_modules/nestjs-grpc-proto-shared/proto --ts_proto_out=src/modules/users/ node_modules/nestjs-grpc-proto-shared/proto/users.proto --ts_proto_opt=nestJs=true --ts_proto_opt=fileSuffix=.pb"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.8.8",
@@ -36,8 +36,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "mysql2": "^3.1.2",
-    "nestjs-grpc-packages": "github:lmduy2612/nestjs-grpc-packages",
-    "nestjs-grpc-proto": "github:lmduy2612/nestjs-grpc-proto#v1.0.3",
+    "nestjs-grpc-proto-shared": "github:lmduy2612/nestjs-grpc-proto-shared#v1.0.3",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
     "pg": "^8.9.0",
