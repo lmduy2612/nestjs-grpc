@@ -34,7 +34,7 @@ services:
     networks:
       - default 
     depends_on:
-      - mysql_database  
+      - mysql_db  
     volumes:
       - ./microservices/auth:/var/www
     command: yarn start:dev
@@ -47,18 +47,20 @@ services:
     networks:
       - default 
     depends_on:
-      - mysql_database  
+      - mysql_db  
     volumes:
       - ./microservices/user:/var/www
     command: yarn start:dev  
 
-  mysql_database:
+  mysql_db:
     image: mysql:5.6
     container_name: mysql_database
     ports:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+    env_file:
+      - .env.docker
     environment:
       MYSQL_ROOT_PASSWORD: password 
     networks:
