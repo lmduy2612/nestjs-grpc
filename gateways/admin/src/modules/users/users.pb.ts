@@ -1,5 +1,6 @@
 /* eslint-disable */
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
+import { ApiProperty } from "@nestjs/swagger";
 import { Observable } from "rxjs";
 
 export const protobufPackage = "user";
@@ -42,26 +43,109 @@ export interface GetUserRequest {
   id: number;
 }
 
-export interface CreateUserRequest {
+export class CreateUserRequest {
+  @ApiProperty({
+    type: String,
+    default: "user99@gmail.com"
+  })
   email: string;
+
+  @ApiProperty({
+    type: String,
+    default: "userFristname"
+  })
   firstName: string;
+
+  @ApiProperty({
+    type: String,
+    default: "userLastname"
+  })
   lastName: string;
+
+  @ApiProperty({
+    type: String,
+    default: "Ho Chi MInh City"
+  })
   address: string;
+
+  @ApiProperty({
+    type: String,
+    default: "avatar1.png"
+  })
   avatar: string;
+
+  @ApiProperty({
+    type: Number,
+    default: 1,
+  })
   gender: number;
+
+  @ApiProperty({
+    type: Number,
+    default: 1,
+  })
   role: number;
+  
+  @ApiProperty({
+    type: Number,
+    default: 99,
+  })
   cityId: number;
 }
 
-export interface UpdateUserRequest {
+export class UpdateUserRequest {
+  @ApiProperty({
+    type: Number,
+    default: 1
+  })
   id: number;
+
+  @ApiProperty({
+    type: String,
+    default: "user99@gmail.com"
+  })
   email: string;
+
+  @ApiProperty({
+    type: String,
+    default: "userFristname"
+  })
   firstName: string;
+
+  @ApiProperty({
+    type: String,
+    default: "userLastname"
+  })
   lastName: string;
+
+  @ApiProperty({
+    type: String,
+    default: "Ho Chi MInh City"
+  })
   address: string;
+
+  @ApiProperty({
+    type: String,
+    default: "avatar1.png"
+  })
   avatar: string;
+
+  @ApiProperty({
+    type: Number,
+    default: 1,
+  })
   gender: number;
+
+  @ApiProperty({
+    type: Number,
+    default: 1,
+  })
   role: number;
+  
+  @ApiProperty({
+    type: Number,
+    default: 99,
+  })
   cityId: number;
 }
 

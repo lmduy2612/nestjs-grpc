@@ -13,7 +13,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ClientGrpc } from '@nestjs/microservices';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 import { AuthGuard } from '../auth/auth.guard';
 import {
@@ -32,6 +32,7 @@ import {
 @UseGuards(AuthGuard)
 @Controller('users')
 @ApiTags('User')
+@ApiBearerAuth()
 export class UsersController {
   private svc: UserServiceClient;
 

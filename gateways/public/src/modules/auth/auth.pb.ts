@@ -1,11 +1,20 @@
 /* eslint-disable */
 import { GrpcMethod, GrpcStreamMethod } from "@nestjs/microservices";
+import { ApiProperty } from "@nestjs/swagger";
 import { Observable } from "rxjs";
 
 export const protobufPackage = "auth";
 
-export interface RegisterRequest {
-  email: string;
+export class RegisterRequest {
+  @ApiProperty({
+    type: String,
+    default: "admin@gmail.com"
+  })
+  email: string;  
+  @ApiProperty({
+    type: String,
+    default: "admin@321"
+  })
   password: string;
 }
 
@@ -14,8 +23,16 @@ export interface RegisterResponse {
   error: string[];
 }
 
-export interface LoginRequest {
-  email: string;
+export class LoginRequest {
+  @ApiProperty({
+    type: String,
+    default: "admin@gmail.com"
+  })
+  email: string;  
+  @ApiProperty({
+    type: String,
+    default: "admin@321"
+  })
   password: string;
 }
 
