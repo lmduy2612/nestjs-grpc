@@ -30,7 +30,7 @@ async function bootstrap() {
 function setUpSwagger(app) {
   const config = new DocumentBuilder()
     .setTitle('Admin gateway')
-    .setDescription('The Public API description')
+    .setDescription('The Admin API description')
     .setVersion('1.0')
     .addBearerAuth()
     .build();
